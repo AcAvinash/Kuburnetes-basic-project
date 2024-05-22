@@ -1,0 +1,4 @@
+apiVersion: indicates kubernetes internall version
+kind: indicates what i am creating
+metadata: naming purpode here pod name
+spec: it contains multiple containers ,name,image,port nod

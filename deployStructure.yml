@@ -1,0 +1,9 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+spec:
+  replicas:
+  strategy: this is the new one
+  selector:
+  template:

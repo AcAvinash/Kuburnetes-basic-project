@@ -1,0 +1,23 @@
+apiversion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deploy
+  labels:
+    app: my-deploy
+spec:
+  replicas: 2
+  strategy:
+    type: rollingUpdate
+  selector:
+    matchlabels:
+      apptype: web-backend
+  template:
+    metadata:
+      labels:
+        apptype: web-backend
+    spec:
+      containers:
+       - name: deployContainers
+         image: nginx
+         ports:
+          - containerport: 80

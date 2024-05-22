@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-rs
+  labels:
+    app: my-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      apptype: web-backend
+  template:
+    metadata:
+      apptype: web-backend
+    spec:
+      containers:
+        - name: nginx-pod-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80

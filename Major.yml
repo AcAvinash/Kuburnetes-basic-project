@@ -1,0 +1,48 @@
+# inclue config,service,deploy
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  My_Driver_Url: OracleDb
+  My_Database_Name: Oracle
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+data:
+  username: avinash
+  password: avinash12@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-container
+          image: oracle/database:192.168.3.11
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: My_Driver_Url
+            - name: My_Database_Name
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: username

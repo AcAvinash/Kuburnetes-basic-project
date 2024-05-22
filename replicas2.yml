@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-ReplicaSet
+  labels:
+    app: my-ReplicaSet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      apptype: my-test-pod
+  template:
+    metadata:
+      labels:
+        apptype: my-test-pod
+    spec:
+      containers:
+        - name: my-web-app
+          image: javabyraghu/maven-web-app
+          ports:
+            - containerPort: 8080
